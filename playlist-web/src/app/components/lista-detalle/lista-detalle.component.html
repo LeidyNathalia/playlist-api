@@ -1,0 +1,21 @@
+<div *ngIf="lista">
+  <mat-card class="detalle-lista-card">
+    <mat-card-title>{{ lista.nombre }}</mat-card-title>
+    <mat-card-subtitle>{{ lista.descripcion }}</mat-card-subtitle>
+
+    <mat-divider></mat-divider>
+
+    <mat-card-content>
+      <h3>Canciones</h3>
+      <mat-list>
+        <mat-list-item *ngFor="let c of lista.canciones">
+          <mat-icon matListIcon>music_note</mat-icon>
+          <div matLine>{{ c.titulo }} - {{ c.artista }}</div>
+          <div matLine class="secundario">
+            {{ c.album }} • {{ c.anno }} • {{ c.genero }}
+          </div>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+</div>

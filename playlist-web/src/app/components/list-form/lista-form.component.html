@@ -1,0 +1,87 @@
+<!-- h2>Crear Lista de Reproducción</h2>
+<form (ngSubmit)="crearLista()">
+  <label>Nombre:</label>
+  <input [(ngModel)]="lista.nombre" name="nombre" required />
+
+  <label>Descripción:</label>
+  <input [(ngModel)]="lista.descripcion" name="descripcion" required />
+
+  <h3>Agregar Canción</h3>
+  <input [(ngModel)]="nuevaCancion.titulo" name="titulo" placeholder="Título" required />
+  <input [(ngModel)]="nuevaCancion.artista" name="artista" placeholder="Artista" required />
+  <input [(ngModel)]="nuevaCancion.album" name="album" placeholder="Álbum" />
+  <input [(ngModel)]="nuevaCancion.anno" name="anno" placeholder="Año" />
+  <input [(ngModel)]="nuevaCancion.genero" name="genero" placeholder="Género" />
+
+  <button type="button" (click)="agregarCancion()">Agregar Canción</button>
+
+  <h4>Canciones Agregadas:</h4>
+  <ul>
+    <li *ngFor="let c of lista.canciones">{{ c.titulo }} - {{ c.artista }}</li>
+  </ul>
+
+  <button type="submit">Crear Lista</button>
+</form> -->
+
+
+<mat-card class="formulario-card">
+  <h2>🎵 Crear Lista de Reproducción</h2>
+  <form (ngSubmit)="crearLista()" #form="ngForm">
+    <!-- Datos generales de la lista -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Nombre</mat-label>
+      <input matInput [(ngModel)]="lista.nombre" name="nombre" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Descripción</mat-label>
+      <input matInput [(ngModel)]="lista.descripcion" name="descripcion" required />
+    </mat-form-field>
+
+    <!-- Datos de la canción -->
+    <h3>🎶 Agregar Canción</h3>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Título</mat-label>
+      <input matInput [(ngModel)]="nuevaCancion.titulo" name="titulo" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Artista</mat-label>
+      <input matInput [(ngModel)]="nuevaCancion.artista" name="artista" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Álbum</mat-label>
+      <input matInput [(ngModel)]="nuevaCancion.album" name="album" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Año</mat-label>
+      <input matInput type="number" [(ngModel)]="nuevaCancion.anno" name="anno" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Género</mat-label>
+      <input matInput [(ngModel)]="nuevaCancion.genero" name="genero" />
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="button" (click)="agregarCancion()">
+      ➕ Agregar Canción
+    </button>
+
+    <!-- Lista de canciones agregadas -->
+    <h4>🎧 Canciones Agregadas:</h4>
+    <mat-list *ngIf="lista.canciones.length > 0">
+      <mat-list-item *ngFor="let c of lista.canciones">
+        {{ c.titulo }} - {{ c.artista }}
+      </mat-list-item>
+    </mat-list>
+
+    <!-- Botón final -->
+    <div class="mt-2">
+      <button mat-raised-button color="accent" type="submit">✅ Crear Lista</button>
+    </div>
+  </form>
+</mat-card>
+

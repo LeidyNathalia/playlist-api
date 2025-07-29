@@ -1,0 +1,13 @@
+.detalle-lista-card {
+  margin: 20px;
+  padding: 10px;
+}
+
+mat-list-item {
+  align-items: start;
+}
+
+.secundario {
+  font-size: 13px;
+  color: gray;
+}

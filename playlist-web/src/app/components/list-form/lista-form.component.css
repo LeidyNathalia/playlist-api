@@ -1,0 +1,14 @@
+.formulario-card {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.mt-2 {
+  margin-top: 1.5rem;
+}
