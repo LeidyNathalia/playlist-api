@@ -1,6 +1,7 @@
 package com.playlist.demo.service;
 
 
+import com.playlist.demo.entity.Cancion;
 import com.playlist.demo.entity.ListaReproduccion;
 import com.playlist.demo.repository.ListaReproduccionRepository ;
 
@@ -54,6 +55,10 @@ public class ListaReproduccionService {
         }
         listaReproduccionRepository.deleteByNombre(nombre);
         return true;
+    }
+
+     public List<ListaReproduccion> findListasByCancion(String nombreCancion) {
+        return listaReproduccionRepository.findByCanciones_Nombre(nombreCancion);
     }
 
 }

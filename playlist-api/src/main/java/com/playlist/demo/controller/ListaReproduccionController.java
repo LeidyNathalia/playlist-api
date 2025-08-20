@@ -1,7 +1,9 @@
 package com.playlist.demo.controller;
 
 
+import com.playlist.demo.entity.Cancion;
 import com.playlist.demo.entity.ListaReproduccion;
+import com.playlist.demo.service.CancionService;
 import com.playlist.demo.service.ListaReproduccionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
@@ -21,6 +23,9 @@ public class ListaReproduccionController {
 
     @Autowired
     private ListaReproduccionService listaReproduccionService;
+
+    @Autowired
+    private CancionService cancionService;
 
     /**
      * Crear una nueva lista de reproducción.
@@ -55,6 +60,13 @@ public class ListaReproduccionController {
                 //.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Lista no encontrada"));
     }
 
+    // Buscar nombre de la cancion y retornar lista de reproducción
+
+   @GetMapping("/buscarPlayList")
+   public Cancion searchCancion(@RequestParam String name){
+        return cancionService.findByNombre(name);
+   }
+
     /**
      * Eliminar una lista por su nombre.
      */
@@ -67,4 +79,20 @@ public class ListaReproduccionController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Lista no encontrada");
         }
     }
+
+    /**
+ * Buscar una canción por nombre y devolver la lista o listas de reproducción donde aparece.
+ */
+    @GetMapping("/cancion/{nombreCancion}")
+    public ResponseEntity<?> getListaByCancion(@PathVariable String nombreCancion) {
+        List<ListaReproduccion> listas = listaReproduccionService.findListasByCancion(nombreCancion);
+
+        if (listas.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("La canción '" + nombreCancion + "' no pertenece a ninguna lista de reproducción");
+        }
+
+        return ResponseEntity.ok(listas);
+    }
+
 }

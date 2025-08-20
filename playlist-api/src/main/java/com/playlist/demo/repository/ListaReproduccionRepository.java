@@ -1,9 +1,11 @@
 package com.playlist.demo.repository;
 
+import com.playlist.demo.entity.Cancion;
 import com.playlist.demo.entity.ListaReproduccion;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -18,4 +20,9 @@ public interface ListaReproduccionRepository extends JpaRepository<ListaReproduc
     boolean existsByNombre(String nombre);
 
     void deleteByNombre(String nombre);
+
+    List<ListaReproduccion> findByCanciones_Nombre(String nombre);
+
+    //List<Cancion> findByNameContaingIgnoreCase(String name);
+
 }
